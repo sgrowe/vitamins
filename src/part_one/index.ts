@@ -1,11 +1,11 @@
-type Colour = "W" | "G" | "B"
+export type Colour = "W" | "G" | "B"
 
-type Vitamins = Colour[]
+export type Vitamins = [number, Colour][]
 
 type ColourSwap = [number, Colour, Colour]
 
 export function makeAllWhite(vitaminLine: string) {
-  const vitamins = parseLine(vitaminLine)
+  const vitamins = parseInput(vitaminLine).map(([, colour]) => colour)
 
   const changes: ColourSwap[] = []
 
@@ -30,18 +30,19 @@ export function makeAllWhite(vitaminLine: string) {
   return changes
 }
 
-const parseLine = (input: string): Vitamins =>
+export const parseInput = (input: string): Vitamins =>
   input.split(/\s+/g).map((v) => {
     const match = v.match(/(\d+)(\w)/)
 
     if (!match) throw new Error("Invalid input")
 
+    const numSides = Number(match[1])
     const colour = match[2]
 
     if (colour !== "W" && colour !== "G" && colour !== "B")
       throw new Error(`Invalid colour: ${colour}`)
 
-    return colour
+    return [numSides, colour]
   })
 
 const allColours: Colour[] = ["W", "G", "B"]
@@ -54,7 +55,7 @@ const otherColour = (a: Colour, b: Colour) => {
   return other
 }
 
-const isMaxi = (vitamins: Vitamins, index: number) => {
+const isMaxi = (vitamins: Colour[], index: number) => {
   const curColour = vitamins[index]
 
   return vitamins.slice(index + 1).every((c) => c !== curColour)

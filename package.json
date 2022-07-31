@@ -6,10 +6,20 @@
   "private": true,
   "scripts": {
     "test": "jest",
-    "build": "tsc src/part_two/index.ts"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^12.2.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/jest": "^28.1.6",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
     "jest": "^28.1.3",
     "prettier": "^2.7.1",
     "ts-jest": "^28.0.7",
