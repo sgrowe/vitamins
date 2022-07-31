@@ -2,7 +2,7 @@ export type Colour = "W" | "G" | "B"
 
 export type Vitamins = [number, Colour][]
 
-type ColourSwap = [number, Colour, Colour]
+export type ColourSwap = [number, Colour, Colour]
 
 export function makeAllWhite(vitaminLine: string) {
   const vitamins = parseInput(vitaminLine).map(([, colour]) => colour)
