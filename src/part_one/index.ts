@@ -17,7 +17,7 @@ export function makeAllWhite(vitaminLine: string) {
 
       if (curColour === targetColour) continue
 
-      if (isMaxi(vitamins, i)) {
+      if (isMaxi(vitamins, i) && wouldBeMaxi(vitamins, i, targetColour)) {
         vitamins[i] = targetColour
         changes.push([i + 3, curColour, targetColour])
         break
@@ -59,4 +59,8 @@ const isMaxi = (vitamins: Colour[], index: number) => {
   const curColour = vitamins[index]
 
   return vitamins.slice(index + 1).every((c) => c !== curColour)
+}
+
+const wouldBeMaxi = (vitamins: Colour[], index: number, newColour: Colour) => {
+  return vitamins.slice(index + 1).every((c) => c !== newColour)
 }

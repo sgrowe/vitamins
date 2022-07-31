@@ -4,7 +4,7 @@ export const consecutiveStates = (
   initialState: string,
   changes: ColourSwap[]
 ) => {
-  let curState = parseInput(initialState)
+  const curState = parseInput(initialState)
 
   const states = [formatState(curState)]
 
@@ -21,5 +21,5 @@ export const consecutiveStates = (
   return states
 }
 
-const formatState = (state: Vitamins) =>
+export const formatState = (state: Vitamins) =>
   state.map(([n, colour]) => `${n}${colour}`).join(" ")
