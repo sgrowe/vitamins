@@ -4,8 +4,12 @@ import { consecutiveStates, formatState } from "../part_three"
 import { Vitamin } from "../Vitamin"
 import styles from "./index.module.css"
 
+const defaultLine = "3B 4B 5G 6W"
+
 export default function Index() {
-  const [vitamins, setVitamins] = useState<Vitamins>([])
+  const [vitamins, setVitamins] = useState<Vitamins>(() =>
+    parseInput(defaultLine)
+  )
   const [futureStates, setFutureStates] = useState<string[]>([])
 
   const inputRef = useRef<HTMLInputElement>(null)
@@ -45,9 +49,11 @@ export default function Index() {
 
   return (
     <div>
+      <h1>Vitamins challenge</h1>
+
       <form className={styles.form} onSubmit={onSubmit}>
         <p>
-          <label htmlFor="line-input">Vitamin line</label>
+          <label htmlFor="line-input">Vitamin line:</label>
         </p>
 
         <div>
@@ -56,7 +62,7 @@ export default function Index() {
             id="line-input"
             name="line"
             type="text"
-            defaultValue="3B 4B 5G 6W"
+            defaultValue={defaultLine}
           />
         </div>
 
